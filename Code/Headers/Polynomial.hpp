@@ -1,64 +1,9 @@
 #ifndef DEF_POLYNOMIAL_HPP
 #define DEF_POLYNOMIAL_HPP
 
-#include <utility>
-#include <iosfwd>
-#include <string>
 #include <vector>
 
-class Monomial {
-
-    public:
-
-    Monomial();
-
-    Monomial(const Monomial&) = default;
-    Monomial(Monomial&&) noexcept = default;
-
-    Monomial(const std::string&);
-    Monomial(int v, unsigned int p = 1);
-
-    ~Monomial() = default;
-
-    bool Null() const;
-
-    int CalculateFor(int);
-
-    friend std::string ToString(Monomial);
-
-    friend Polynomial Factor(const Polynomial&, const Polynomial&);
-    friend std::pair<Polynomial, Polynomial> Develop(const Polynomial&);
-
-    friend Monomial operator+(const Monomial&, const Monomial&);
-    friend Monomial operator-(const Monomial&, const Monomial&);
-    friend Monomial operator*(const Monomial&, const Monomial&);
-    friend Monomial operator/(const Monomial&, const Monomial&);
-
-    Monomial& operator+=(const Monomial&);
-    Monomial& operator-=(const Monomial&);
-    Monomial& operator*=(const Monomial&);
-    Monomial& operator/=(const Monomial&);
-
-    friend bool operator==(const Monomial&, const Monomial&);
-    friend bool operator!=(const Monomial&, const Monomial&);
-
-    friend bool operator<(const Monomial&, const Monomial&);
-    friend bool operator<=(const Monomial&, const Monomial&);
-
-    friend bool operator>(const Monomial&, const Monomial&);
-    friend bool operator>=(const Monomial&, const Monomial&);
-
-    Monomial& operator=(const Monomial&) = default;
-    Monomial& operator=(Monomial&&) noexcept = default;
-
-    friend std::ostream& operator<<(std::ostream&, const Monomial&);
-
-    private:
-
-    int value;
-    unsigned int power;
-
-};
+#include "./Monomial.hpp"
 
 class Polynomial {
 
@@ -110,6 +55,8 @@ class Polynomial {
 
     Polynomial& operator=(const Polynomial&) = default;
     Polynomial& operator=(Polynomial&&) noexcept = default;
+
+    operator std::string();
 
     friend std::ostream& operator<<(std::ostream&, const Polynomial&);
 
