@@ -20,6 +20,13 @@ Monomial::Monomial(std::string s) {
 
     }
 
+    if (s == "x") {
+
+        coefficient = exposant = 1;
+        return;
+
+    }
+
     bool negatif{false};
 
     if (!s.empty() && !std::isdigit(s[0]) && s[0] != '-') {
@@ -115,7 +122,7 @@ void Monomial::SetNull() {
 
 }
 
-bool Monomial::Null() const { return coefficient == 0 && exposant == 0; }
+bool Monomial::Null() const { return coefficient == 0; }
 int Monomial::CalculateFor(int x) const { return coefficient*std::pow(x, exposant); }
 
 std::string ToString(Monomial m) {
@@ -123,6 +130,10 @@ std::string ToString(Monomial m) {
     if (m.exposant == 0) {
 
         return std::to_string(m.coefficient);
+
+    } else if (m.coefficient == 1 && m.exposant == 1) {
+
+        return "x";
 
     } else if (m.exposant == 1) {
 
@@ -176,6 +187,9 @@ std::pair<Monomial, Monomial> Develop(const Monomial &m) {
     return std::pair<Monomial, Monomial>{d, d};
 
 }
+
+Monomial Monomial::operator+() const { return *this; }
+Monomial Monomial::operator-() const { return Monomial{-coefficient, exposant}; }
 
 Monomial operator+(const Monomial &l, const Monomial &r) {
 

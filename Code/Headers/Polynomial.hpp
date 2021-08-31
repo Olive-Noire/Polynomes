@@ -9,15 +9,35 @@ class Polynomial {
 
     public:
 
-    Polynomial();
+    Polynomial() = default;
 
     Polynomial(const Polynomial&) = default;
     Polynomial(Polynomial&&) noexcept = default;
 
-    Polynomial(const std::string&);
+    Polynomial(std::string);
     Polynomial(Monomial);
 
     ~Polynomial() = default;
+
+    template <typename Lambda> void ForEach(Lambda function) const {
+
+        for (Monomial m : terms) {
+
+            if (!m.Null()) function(m);
+
+        }
+
+    }
+
+    template <typename Lambda> void ForEach(Lambda function) {
+
+        for (Monomial &m : terms) {
+
+            if (!m.Null()) function(m);
+
+        }
+
+    }
 
     bool Null() const;
     bool IsMonomial() const;
@@ -25,14 +45,16 @@ class Polynomial {
     bool IsTrinomial() const;
     bool IsQuadrinomial() const;
 
-    int CalculateFor(int);
+    int CalculateFor(int) const;
+    unsigned int Degree() const;
     std::size_t Count() const;
-    std::size_t Degree() const;
 
     friend std::string ToString(const Polynomial&);
 
     friend Polynomial Factor(const Polynomial&, const Polynomial&);
     friend std::pair<Polynomial, Polynomial> Develop(const Polynomial&);
+
+    friend std::vector<unsigned int> GetDegrees(const Polynomial&);
 
     friend Polynomial operator+(const Polynomial&, const Polynomial&);
     friend Polynomial operator-(const Polynomial&, const Polynomial&);

@@ -31,6 +31,9 @@ class Monomial {
     friend Monomial Factor(const Monomial&, const Monomial&);
     friend std::pair<Monomial, Monomial> Develop(const Monomial&);
 
+    Monomial operator+() const;
+    Monomial operator-() const;
+
     friend Monomial operator+(const Monomial&, const Monomial&);
     friend Monomial operator-(const Monomial&, const Monomial&);
     friend Monomial operator*(const Monomial&, const Monomial&);

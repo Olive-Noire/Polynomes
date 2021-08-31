@@ -4,12 +4,16 @@
 
 int main() {
 
-    Monomial m{"12x^6"};
-    std::cout << m/Monomial{"4x^3"} << std::endl << ToStringFor(m, 12) << " = " << m.CalculateFor(12) << std::endl << Factor(Develop(m).first, Develop(m).second);
-    std::cin.get();
+    Polynomial p1{"3x^2+x+7"}; // "3x^2+x+7" -3x^2+x+1 x+3x^2
+    //p1 += Monomial{"x"};
+    //p1 += Monomial{"7"};
 
-    Polynomial p1{"3x^2+x+7"};
-    Polynomial p2{"4x^3-3x^2+x+1"};
+    Polynomial p2{Monomial{"4x^3"}}; // "4x^3-3x^2+x+1" 4x^3-3x^2+x+1
+    p2 += Monomial{"-3x^2"};
+    p2 += Monomial{"x"};
+    p2 += Monomial{"1"};
+
+    std::cout << p1;
 
     if (ToString(p1+p2) != "4x^3+2x+8") std::cout << "Addition non implemente correctement\n";
     if (ToString(p1-p2) != "-4x^3+6x^2+6") std::cout << "Soustraction non implemente correctement\n";
