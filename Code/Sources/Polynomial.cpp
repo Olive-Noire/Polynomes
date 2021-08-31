@@ -1,10 +1,76 @@
 #include "../Headers/Polynomial.hpp"
 
-#include <iostream>
-
 Polynomial::Polynomial(std::string s) {
 
-    // 
+    for (std::size_t i{0}; i < s.size(); i++) {
+
+        if (std::isspace(s[i])) {
+
+            s.erase(s.begin()+i);
+            i--;
+
+        }
+
+    }
+
+    bool sign{!s.empty() && s[0] != '-'};
+    if (!sign) s.erase(s.begin());
+
+    std::string temp;
+
+    while (!s.empty()) {
+
+        if (s[0] == '+' || s[0] == '-' || s.size() == 1) {
+
+            if (s.size() == 1) temp.push_back(s[0]);
+
+            Monomial m{temp};
+
+            if (m.exposant >= terms.size()) {
+
+                while (m.exposant > terms.size()) {
+                    
+                    terms.push_back(Monomial{0, terms.size()});
+
+                }
+
+                if (sign) {
+
+                    terms.push_back(m);
+
+                }   else {
+
+                    terms.push_back(-m);
+
+                }
+
+            } else {
+
+                if (sign) {
+
+                    terms[m.exposant] += m;
+
+                }   else {
+
+                    terms[m.exposant] -= m;
+
+                }
+
+            }
+
+            sign = (s[0] != '-');
+
+            s.erase(s.begin());
+            temp.clear();
+
+            continue;
+
+        }
+
+        temp.push_back(s[0]);
+        s.erase(s.begin());
+
+    }
 
 }
 
