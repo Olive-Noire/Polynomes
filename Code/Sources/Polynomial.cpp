@@ -1,5 +1,7 @@
 #include "../Headers/Polynomial.hpp"
 
+#include <cassert>
+
 Polynomial::Polynomial(std::string s) {
 
     for (std::size_t i{0}; i < s.size(); i++) {
@@ -166,13 +168,15 @@ std::string ToString(const Polynomial &p) {
 
 Polynomial Factor(const Polynomial &a, const Polynomial &b) {
 
-
+    Polynomial f;
+    return f;
 
 }
 
 std::pair<Polynomial, Polynomial> Develop(const Polynomial &p) {
 
-
+    std::pair<Polynomial, Polynomial> d;
+    return d;
 
 }
 
@@ -247,7 +251,26 @@ Polynomial operator*(const Polynomial &l, const Polynomial &r) {
 
 Polynomial operator/(const Polynomial &l, const Polynomial &r) {
 
-    return l+r;
+    assert(!r.Null() && l > r);
+
+    if (l.Null()) {
+
+        return l;
+
+    } else {
+
+        Polynomial result, dividende{l};
+
+        for (std::size_t i{0}; i < l.terms.size(); i++) {
+
+            result += dividende[i]/r[0];
+            dividende -= dividende[i]/r[0]*r[0];
+
+        }
+
+        return result;
+
+    }
 
 }
 

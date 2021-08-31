@@ -11,6 +11,12 @@ int main() {
     if (ToString(p1-p2) != "-4x^3+6x^2+6") std::cout << "Soustraction non implemente correctement\n";
     if (ToString(p1*p2) != "12x^5-5x^4+28x^3-17x^2+8x+7") std::cout << "Multiplication non implemente correctement\n";
 
+    p1 = Polynomial{"16x^4+8x^3-4x^2+6"};
+    p2 = Polynomial{"2x-5"};
+
+    if (ToString(p1/p2) != "8x^3+24x^2+58x+145") std::cout << "Division non implemente correctement\n";
+    if (ToString(p1%p2) != "731") std::cout << "Modulo non implemente correctement\n";
+
     std::cout << "Si aucun message ne s'affiche alors l'implementation est correcte !";
     std::cin.get();
 

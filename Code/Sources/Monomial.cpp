@@ -213,7 +213,7 @@ Monomial operator*(const Monomial &l, const Monomial &r) {
 
 Monomial operator/(const Monomial &l, const Monomial &r) {
 
-    assert(l.coefficient%r.coefficient == 0 && l.exposant >= r.exposant);
+    assert((l.coefficient == 1 && r.coefficient == 1 || (l.coefficient != 1 && r.coefficient != 1 && l.coefficient%r.coefficient == 0)) && l.exposant >= r.exposant);
     return Monomial{l.coefficient/r.coefficient, l.exposant-r.exposant};
 
 }
