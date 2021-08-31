@@ -14,6 +14,7 @@ class Polynomial {
     Polynomial(const Polynomial&) = default;
     Polynomial(Polynomial&&) noexcept = default;
 
+    Polynomial(const std::string&);
     Polynomial(Monomial);
 
     ~Polynomial() = default;
@@ -25,6 +26,7 @@ class Polynomial {
 
     int CalculateFor(int);
     std::size_t Count() const;
+    std::size_t Degree() const;
 
     friend std::string ToString(const Polynomial&);
 
@@ -35,11 +37,13 @@ class Polynomial {
     friend Polynomial operator-(const Polynomial&, const Polynomial&);
     friend Polynomial operator*(const Polynomial&, const Polynomial&);
     friend Polynomial operator/(const Polynomial&, const Polynomial&);
+    friend Polynomial operator%(const Polynomial&, const Polynomial&);
 
     Polynomial& operator+=(const Polynomial&);
     Polynomial& operator-=(const Polynomial&);
     Polynomial& operator*=(const Polynomial&);
     Polynomial& operator/=(const Polynomial&);
+    Polynomial& operator%=(const Polynomial&);
 
     friend bool operator==(const Polynomial&, const Polynomial&);
     friend bool operator!=(const Polynomial&, const Polynomial&);
@@ -65,5 +69,16 @@ class Polynomial {
     std::vector<Monomial> terms;
 
 };
+
+template <std::size_t Size> class Static_Polynomial {
+
+    public:
+
+    private:
+
+};
+
+using Binomial = Static_Polynomial<2>;
+using Trinomial = Static_Polynomial<3>;
 
 #endif // DEF_POLYNOMIAL_HPP

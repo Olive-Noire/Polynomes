@@ -6,6 +6,12 @@ Polynomial::Polynomial() {
 
 }
 
+Polynomial::Polynomial(const std::string &s) {
+
+    
+    
+}
+
 Polynomial::Polynomial(Monomial m) {
 
     
@@ -43,6 +49,12 @@ int Polynomial::CalculateFor(int x) {
 }
 
 std::size_t Polynomial::Count() const {
+
+
+
+}
+
+std::size_t Polynomial::Degree() const {
 
 
 

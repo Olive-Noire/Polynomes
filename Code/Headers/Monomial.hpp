@@ -12,16 +12,19 @@ class Monomial {
     Monomial(const Monomial&) = default;
     Monomial(Monomial&&) noexcept = default;
 
-    Monomial(const std::string&);
+    Monomial(std::string);
     Monomial(int, unsigned int = 1);
 
     ~Monomial() = default;
 
+    void SetNull();
+
     bool Null() const;
 
-    int CalculateFor(int);
+    int CalculateFor(int) const;
 
     friend std::string ToString(Monomial);
+    friend std::string ToStringFor(Monomial, int);
 
     friend Monomial Factor(const Monomial&, const Monomial&);
     friend std::pair<Monomial, Monomial> Develop(const Monomial&);
@@ -30,11 +33,13 @@ class Monomial {
     friend Monomial operator-(const Monomial&, const Monomial&);
     friend Monomial operator*(const Monomial&, const Monomial&);
     friend Monomial operator/(const Monomial&, const Monomial&);
+    friend Monomial operator%(const Monomial&, const Monomial&);
 
     Monomial& operator+=(const Monomial&);
     Monomial& operator-=(const Monomial&);
     Monomial& operator*=(const Monomial&);
     Monomial& operator/=(const Monomial&);
+    Monomial& operator%=(const Monomial&);
 
     friend bool operator==(const Monomial&, const Monomial&);
     friend bool operator!=(const Monomial&, const Monomial&);
@@ -52,10 +57,8 @@ class Monomial {
 
     friend std::ostream& operator<<(std::ostream&, const Monomial&);
 
-    private:
-
-    int value;
-    unsigned int power;
+    int coefficient;
+    unsigned int exposant;
 
 };
 
