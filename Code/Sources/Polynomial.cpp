@@ -42,6 +42,12 @@ bool Polynomial::IsTrinomial() const {
 
 }
 
+bool Polynomial::IsQuadrinomial() const {
+
+
+
+}
+
 int Polynomial::CalculateFor(int x) {
 
 
@@ -102,6 +108,12 @@ Polynomial operator/(const Polynomial &l, const Polynomial &r) {
 
 }
 
+Polynomial operator%(const Polynomial &l, const Polynomial &r) {
+
+
+
+}
+
 Polynomial& Polynomial::operator+=(const Polynomial &p) {
 
 
@@ -121,6 +133,12 @@ Polynomial& Polynomial::operator*=(const Polynomial &p) {
 }
 
 Polynomial& Polynomial::operator/=(const Polynomial &p) {
+
+
+
+}
+
+Polynomial& Polynomial::operator%=(const Polynomial &p) {
 
 
 

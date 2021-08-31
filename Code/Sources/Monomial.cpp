@@ -164,15 +164,16 @@ std::string ToStringFor(Monomial m, int i) {
 
 Monomial Factor(const Monomial &a, const Monomial &b) {
 
-    Monomial f;
-    return f;
+    return Monomial{a.coefficient+b.coefficient, a.exposant+b.exposant};
 
 }
 
 std::pair<Monomial, Monomial> Develop(const Monomial &m) {
 
-    std::pair<Monomial, Monomial> d;
-    return d;
+    assert(m.coefficient%2 == 0 && m.exposant%2 == 0);
+
+    Monomial d{m.coefficient/2, m.exposant/2};
+    return std::pair<Monomial, Monomial>{d, d};
 
 }
 

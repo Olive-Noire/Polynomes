@@ -4,8 +4,8 @@
 
 int main() {
 
-    Monomial m{"12x^5"};
-    std::cout << m/Monomial{"4x^3"} << std::endl << ToStringFor(m, 12) << " = " << m.CalculateFor(12);
+    Monomial m{"12x^6"};
+    std::cout << m/Monomial{"4x^3"} << std::endl << ToStringFor(m, 12) << " = " << m.CalculateFor(12) << std::endl << Factor(Develop(m).first, Develop(m).second);
     std::cin.get();
 
     Polynomial p1{"3x^2+x+7"};

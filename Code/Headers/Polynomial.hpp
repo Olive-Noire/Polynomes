@@ -23,6 +23,7 @@ class Polynomial {
     bool IsMonomial() const;
     bool IsBinomial() const;
     bool IsTrinomial() const;
+    bool IsQuadrinomial() const;
 
     int CalculateFor(int);
     std::size_t Count() const;
@@ -80,5 +81,6 @@ template <std::size_t Size> class Static_Polynomial {
 
 using Binomial = Static_Polynomial<2>;
 using Trinomial = Static_Polynomial<3>;
+using Quadrinomial = Static_Polynomial<4>;
 
 #endif // DEF_POLYNOMIAL_HPP

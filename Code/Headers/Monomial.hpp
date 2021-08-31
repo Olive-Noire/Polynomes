@@ -23,6 +23,8 @@ class Monomial {
 
     int CalculateFor(int) const;
 
+    friend bool CanDivide(const Monomial&, const Monomial&);
+
     friend std::string ToString(Monomial);
     friend std::string ToStringFor(Monomial, int);
 
